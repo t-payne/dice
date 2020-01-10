@@ -1,4 +1,5 @@
 import React from 'react';
+import Die from './Die';
 import './RollDice.css';
 
 class RollDice extends React.Component {
@@ -33,7 +34,7 @@ class RollDice extends React.Component {
       return(
         <div>
           <div>
-            {this.duplicate("Die", this.props.num)}
+            {this.duplicate(<Die/>, this.props.num)}
           </div>
           <div>
             <button onClick={this.roll}>
