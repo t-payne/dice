@@ -2,12 +2,12 @@ import React from 'react';
 import './Die.css';
 
 class Die extends React.Component {
-  static defaultProps = { num: 1 }
-
+  static defaultProps = { face: 'two' }
+  
   render() {
       return(
         <div>
-          <i class="fas fa-dice-one"></i>
+          <i className={`Die fas fa-dice-${this.props.face}`}></i>
         </div>
       )
   }

@@ -7,16 +7,24 @@ class RollDice extends React.Component {
 
   constructor(props) {
       super(props);
+  
+      let dice = [];
+      for (let i = 0; i < props.num; i++) {
+        dice.push(<Die key={i}/>);
+      }
+
       this.state = { 
         num: props.num,
-        isRolling: false
+        isRolling: false,
+        dice: dice
       };
+  
       this.roll = this.roll.bind(this);
       this.endRoll = this.endRoll.bind(this);
   }
   
   genDieValue() {
-    return Math.floor(Math.random() * 6) + 6;
+    return Math.floor(Math.random() * 6) + 1;
   }
 
   endRoll(e) {
@@ -24,17 +32,18 @@ class RollDice extends React.Component {
   }
 
   roll(e) {
+    var words = ['','one ','two ','three ','four ', 'five ','six '];    
     this.setState({ isRolling: true });
+    this.state.dice.map(die => die.props.numStr);
     setTimeout(this.endRoll, 1000);
   }
-
-  duplicate = (x, n) => Array.from(new Array(n), () => x);
-
+  
   render() {
+    
       return(
         <div>
           <div>
-            {this.duplicate(<Die/>, this.props.num)}
+            {this.state.dice}
           </div>
           <div>
             <button onClick={this.roll}>
