@@ -29,10 +29,13 @@ class RollDice extends React.Component {
     this.setState({ isRolling: false });
   }
 
+  updateDiceValues(curState) {
+    return {dice: st.dice.map(() => this.genDieValue())} 
+  }
+
   roll(e) {
     this.setState({ isRolling: true });
-    let newvals = this.state.dice.map(() => this.genDieValue());
-    this.setState({ dice: newvals });
+    this.setState(this.updateDiceValues);
     setTimeout(this.endRoll, 1000);
   }
   
