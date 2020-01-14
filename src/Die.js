@@ -2,7 +2,7 @@ import React from 'react';
 import './Die.css';
 
 class Die extends React.Component {
-  static defaultProps = { face: 'two' }
+  static defaultProps = { face: 'one' }
   
   render() {
       return(

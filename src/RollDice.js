@@ -3,20 +3,18 @@ import Die from './Die';
 import './RollDice.css';
 
 class RollDice extends React.Component {
-  static defaultProps = { num: 2 }
+  static defaultProps = { 
+    sides: ['one','two','three','four','five','six'],
+    num: 2
+  }
 
   constructor(props) {
       super(props);
-  
-      let dice = [];
-      for (let i = 0; i < props.num; i++) {
-        dice.push(<Die key={i}/>);
-      }
 
-      this.state = { 
-        num: props.num,
+      this.state = {
+        sides: props.sides,
         isRolling: false,
-        dice: dice
+        dice: new Array(props.num).fill(0)
       };
   
       this.roll = this.roll.bind(this);
@@ -32,21 +30,20 @@ class RollDice extends React.Component {
   }
 
   roll(e) {
-    var words = ['','one ','two ','three ','four ', 'five ','six '];    
     this.setState({ isRolling: true });
-    this.state.dice.map(die => die.props.numStr);
+    let newvals = this.state.dice.map(() => this.genDieValue());
+    this.setState({ dice: newvals });
     setTimeout(this.endRoll, 1000);
   }
   
   render() {
-    
       return(
-        <div>
-          <div>
-            {this.state.dice}
+        <div className='RollDice'>
+          <div className='RollDice-containter'>
+            { this.state.dice.map(v => <Die face={this.state.sides[v]}/>) }
           </div>
           <div>
-            <button onClick={this.roll}>
+            <button onClick={this.roll} disabled={this.state.isRolling}>
                   { this.state.isRolling ? "Rolling..." : "Roll" }
             </button>
           </div>

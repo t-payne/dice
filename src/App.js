@@ -5,7 +5,7 @@ import RollDice from './RollDice.js';
 function App() {
   return (
     <div className="App">
-      <RollDice />
+      <RollDice num={5} />
     </div>
   );
 }
